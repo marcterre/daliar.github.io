@@ -7,9 +7,21 @@
   div {
     scroll-behavior: smooth;
   }
-  img {
-    width: 60vw;
-    max-height: 90vh;
-    object-fit: contain;
+  .image-wrapper {
+    img {
+      width: 60vw;
+      max-height: 90vh;
+      object-fit: contain;
+    }
+    .overlay {
+      position: absolute;
+      width: 100vw;
+      background-color: rgba(0, 0, 0, 0.5);
+      opacity: 1;
+      transition: opacity 0.3s;
+      &:hover {
+        opacity: 1;
+      }
+    }
   }
 }

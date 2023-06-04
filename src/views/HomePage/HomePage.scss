@@ -18,10 +18,11 @@ header {
   .logoWrapper {
     width: 25vw;
     display: flex;
-    justify-content: space-between;
+    justify-content: right;
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    gap: 2rem;
+    top: 2rem;
+    right: 2rem;
     img {
       transform: scale(1);
       transition: transform 0.3s ease-in-out;
