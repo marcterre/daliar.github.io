@@ -1,6 +1,7 @@
 import InstaSvg from "../../asset/instagram.svg";
 import EmailSvg from "../../asset/email-outline.svg";
 import arrowDown from "../../asset/arrow-down.svg";
+import "./HomePage.scss";
 
 export const HomePage = () => {
   const scrollToSection = (sectionId: string) => {

@@ -1,13 +1,13 @@
 import "./App.scss";
-import { Gallery } from "./components/Gallery/Gallery";
-import { HomePage } from "./components/HomePage/HomePage";
+import { GalleryView } from "./views/GalleryView/GalleryView";
+import { HomePage } from "./views/HomePage/HomePage";
 
 function App() {
   return (
     <div className="App">
       <body>
         <HomePage />
-        <Gallery />
+        <GalleryView />
       </body>
     </div>
   );
