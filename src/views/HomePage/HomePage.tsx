@@ -1,6 +1,7 @@
 import InstaSvg from "../../asset/instagram.svg";
 import EmailSvg from "../../asset/email-outline.svg";
 import arrowDown from "../../asset/arrow-down.svg";
+import { Navigation } from "../../components/Navigation/Navigation";
 import "./HomePage.scss";
 
 export const HomePage = () => {
@@ -27,6 +28,7 @@ export const HomePage = () => {
           <img className="svg" src={EmailSvg} alt="link to email" />
         </a>
       </div>
+      <Navigation />
       <div className="wrapper">
         <h1>Lia Dingeldein</h1>
         <h2>character designer</h2>

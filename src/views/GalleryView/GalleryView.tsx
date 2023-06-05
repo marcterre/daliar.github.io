@@ -5,7 +5,7 @@ export const GalleryView = () => {
   return (
     <div className="galleryWrapper" id="gallery">
       {images.map((image, index) => (
-        <div className="image-wrapper">
+        <div className="image-wrapper" key={index}>
           <img src={image.url} alt="something" key={index} />
           <div className="overlay">
             <article>{image.comment}</article>
