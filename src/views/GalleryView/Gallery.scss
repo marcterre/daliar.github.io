@@ -7,16 +7,29 @@
   div {
     scroll-behavior: smooth;
   }
+  .image-wrapper figure:hover img {
+    opacity: 0.5;
+  }
+  .image-wrapper figure img {
+    opacity: 1;
+    -webkit-transition: 0.3s ease-in-out;
+    transition: 0.3s ease-in-out;
+  }
   .image-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     img {
-      width: 60vw;
-      max-height: 90vh;
       object-fit: contain;
     }
+
     .overlay {
+      z-index: 1;
+      max-height: 40%;
       position: absolute;
-      width: 100vw;
-      background-color: rgba(0, 0, 0, 0.5);
+      text-align: center;
+      max-width: 35vw;
+      color: white;
       opacity: 1;
       transition: opacity 0.3s;
       &:hover {
