@@ -1,4 +1,6 @@
 import { HomePage } from "../pages";
+import { SingIn } from "../components/SingIn/SignIn";
+// import SingIn from "../components/SignIn/SignIn";
 
 export const PageRoutes = [
   {
@@ -7,7 +9,7 @@ export const PageRoutes = [
   },
   {
     path: "/d",
-    element: <p>Hello</p>,
+    element: <SingIn />,
   },
   {
     path: "*",
