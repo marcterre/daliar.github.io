@@ -16,15 +16,12 @@
       transform: scale(1.2);
       transition: transform 0.5s ease-in-out;
     }
-    &.rotate-45deg:hover {
-      transform: rotate(45deg);
-    }
   }
   &--hover:hover {
     opacity: 0.5;
   }
 
-  &--rotate-45deg {
+  &.rotate-45deg {
     transform: rotate(45deg);
   }
 }

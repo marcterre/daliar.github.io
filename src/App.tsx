@@ -1,14 +1,15 @@
 import "./App.scss";
-import { GalleryView } from "./views/GalleryView/GalleryView";
-import { HomePage } from "./views/HomePage/HomePage";
+import { Route, Routes } from "react-router-dom";
+import { PageRoutes } from "./routes/PageRoutes";
 
 function App() {
   return (
     <div className="App">
-    
-        <HomePage />
-        <GalleryView />
-   
+      <Routes>
+        {PageRoutes.map((route, index) => (
+          <Route key={index} path={route.path} element={route.element} />
+        ))}
+      </Routes>
     </div>
   );
 }
