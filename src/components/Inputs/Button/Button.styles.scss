@@ -1,3 +1,30 @@
 .button {
+  border: 1px solid rgb(108, 107, 107);
+  border-radius: 4px;
+  background-color: rgb(49, 50, 118);
+  color: white;
   cursor: pointer;
+  min-width: 60px;
+  padding: 0.3rem;
+  margin: 0.2rem;
+
+  &--add-image {
+    background: none;
+    border: none;
+
+    &:hover {
+      transform: scale(1.2);
+      transition: transform 0.5s ease-in-out;
+    }
+    &.rotate-45deg:hover {
+      transform: rotate(45deg);
+    }
+  }
+  &--hover:hover {
+    opacity: 0.5;
+  }
+
+  &--rotate-45deg {
+    transform: rotate(45deg);
+  }
 }

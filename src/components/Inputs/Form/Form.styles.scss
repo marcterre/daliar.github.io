@@ -1,1 +1,26 @@
-.Form { /* Style */ }
+form {
+  display: grid;
+  gap: 0.3rem;
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 1rem;
+  background-color: var(--background-color);
+
+  .submit-wrapper {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  input {
+    padding: 0.3rem;
+  }
+}
+
+.form-animation {
+  transition: transform 0.3s ease-in-out;
+  transform-origin: top;
+  transform: scale(1, 0);
+}
+
+.form-animation.open {
+  transform: scale(1);
+}

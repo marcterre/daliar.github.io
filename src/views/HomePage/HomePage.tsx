@@ -1,10 +1,13 @@
 import InstaSvg from "../../asset/instagram.svg";
 import EmailSvg from "../../asset/email-outline.svg";
 import arrowDown from "../../asset/arrow-down.svg";
-import { Navigation } from "../../components/Navigation/Navigation";
+import { AddImage } from "../../components/AddImage/AddImage";
 import "./HomePage.scss";
+import { useState } from "react";
 
 export const HomePage = () => {
+  const [isAuth, setIsAuth] = useState(false);
+
   const scrollToSection = (sectionId: string) => {
     const section = document.getElementById(sectionId);
     if (section) {
@@ -28,7 +31,7 @@ export const HomePage = () => {
           <img className="svg" src={EmailSvg} alt="link to email" />
         </a>
       </div>
-      <Navigation />
+      {isAuth && <AddImage />}
       <div className="wrapper">
         <h1>Lia Dingeldein</h1>
         <h2>character designer</h2>

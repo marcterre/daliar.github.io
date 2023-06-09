@@ -1,7 +1,8 @@
+import { ReactElement } from "react";
 import "./Button.styles.scss";
 
 type ButtonTypes = {
-  label?: string;
+  label?: string | ReactElement;
   type?: "button" | "submit" | "reset";
   handleClick?: () => void;
   variant?: string;

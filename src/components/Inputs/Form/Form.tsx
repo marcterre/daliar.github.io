@@ -3,20 +3,31 @@ import "./Form.styles.scss";
 import { Input } from "./Input";
 import { Button } from "../Button";
 
-type FormProps = {};
+type FormProps = { className?: string };
 
 export const Form = (props: FormProps) => {
-  const {} = props;
+  const { className } = props;
   return (
-    <form>
+    <form className={className}>
       <Input label="Name" />
       <Input label="Comment" />
       <Button
+        variant="hover "
         label="Image upload"
         handleClick={() => console.log("upload image")}
       />
-      <Button handleClick={() => console.log("cancel")} label="cancel" />
-      <Button handleClick={() => console.log("submit")} label="save" />
+      <div className="submit-wrapper">
+        <Button
+          handleClick={() => console.log("cancel")}
+          label="cancel"
+          variant="hover"
+        />
+        <Button
+          variant="hover "
+          handleClick={() => console.log("submit")}
+          label="save"
+        />
+      </div>
     </form>
   );
 };
