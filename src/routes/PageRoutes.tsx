@@ -6,7 +6,7 @@ export const PageRoutes = [
     element: <HomePage />,
   },
   {
-    path: "/Bananasplit",
+    path: "/d",
     element: <p>Hello</p>,
   },
   {

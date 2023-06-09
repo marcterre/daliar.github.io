@@ -1,7 +1,7 @@
 import InstaSvg from "../../asset/instagram.svg";
 import EmailSvg from "../../asset/email-outline.svg";
 import arrowDown from "../../asset/arrow-down.svg";
-import { Navigation } from "../../components/Navigation/Navigation";
+import { AddImage } from "../../components/AddImage/AddImage";
 import "./HomePageView.styles.scss";
 import { GalleryView } from "../GalleryView/GalleryView";
 
@@ -30,7 +30,7 @@ export const HomePageView = () => {
             <img className="svg" src={EmailSvg} alt="link to email" />
           </a>
         </div>
-        <Navigation />
+        <AddImage />
         <div className="wrapper">
           <h1>Lia Dingeldein</h1>
           <h2>character designer</h2>
