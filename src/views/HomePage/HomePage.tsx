@@ -1,9 +1,9 @@
 import InstaSvg from "../../asset/instagram.svg";
 import EmailSvg from "../../asset/email-outline.svg";
 import arrowDown from "../../asset/arrow-down.svg";
-import { AddImage } from "../../components/AddImage/AddImage";
 import "./HomePage.scss";
 import { useState } from "react";
+import { AddImage } from "../../components/AddImage/AddImage";
 
 export const HomePage = () => {
   const [isAuth, setIsAuth] = useState(false);

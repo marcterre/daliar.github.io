@@ -23,3 +23,5 @@ export const AddImage = () => {
     </div>
   );
 };
+
+export default AddImage;
