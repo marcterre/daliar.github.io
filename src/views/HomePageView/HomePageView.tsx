@@ -4,8 +4,11 @@ import arrowDown from "../../asset/arrow-down.svg";
 import { AddImage } from "../../components/AddImage/AddImage";
 import "./HomePageView.styles.scss";
 import { GalleryView } from "../GalleryView/GalleryView";
+import { useState } from "react";
 
 export const HomePageView = () => {
+  const [isAuth, setIsAuth] = useState(false);
+
   const scrollToSection = (sectionId: string) => {
     const section = document.getElementById(sectionId);
     if (section) {
@@ -30,7 +33,7 @@ export const HomePageView = () => {
             <img className="svg" src={EmailSvg} alt="link to email" />
           </a>
         </div>
-        <AddImage />
+        {isAuth && <AddImage />}
         <div className="wrapper">
           <h1>Lia Dingeldein</h1>
           <h2>character designer</h2>
