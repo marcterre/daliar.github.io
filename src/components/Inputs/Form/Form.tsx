@@ -1,4 +1,3 @@
-import React from "react";
 import "./Form.styles.scss";
 import { Input } from "./Input";
 import { Button } from "../Button";
