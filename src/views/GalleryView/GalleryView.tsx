@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import images from "../../utils/db.json";
 import "./Gallery.scss";
 import useContent from "../../hooks/useContent";

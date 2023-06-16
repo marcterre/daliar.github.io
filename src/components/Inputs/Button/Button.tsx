@@ -1,10 +1,11 @@
 import { ReactElement } from "react";
 import "./Button.styles.scss";
+import { FormEvent } from "react";
 
 type ButtonTypes = {
   label?: string | ReactElement;
   type?: "button" | "submit" | "reset";
-  handleClick?: () => void;
+  handleClick?: (e: FormEvent) => void;
   variant?: string;
 };
 

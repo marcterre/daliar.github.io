@@ -24,4 +24,15 @@
   &.rotate-45deg {
     transform: rotate(45deg);
   }
+
+  &--logout {
+    position: absolute;
+    top: 6rem;
+    left: 2rem;
+  }
+
+  a {
+    position: absolute;
+    top: 0;
+  }
 }
