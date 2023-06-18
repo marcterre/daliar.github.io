@@ -11,10 +11,10 @@ const UploadWidget = () => {
   useEffect(() => {
     const widget = window.cloudinary.createUploadWidget(
       {
-        cloudName: "demo",
-        uploadPreset: "preset1",
-        folder: "widgetUpload",
-        cropping: true,
+        cloudName: process.env.REACT_APP_CLOUDINARY_NAME,
+        uploadPreset: process.env.REACT_APP_CLOUDINARY_PRESET,
+        folder: "daliar_website_uploads",
+        cropping: false,
       },
       (error: any, result: any) => {
         console.log(error, result);
