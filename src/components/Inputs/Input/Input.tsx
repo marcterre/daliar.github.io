@@ -30,15 +30,15 @@ export const Input = (props: InputProps) => {
         className={`label ${variant ? `label--${variant}` : ""}`}
       >
         {label && label}
+        <input
+          defaultValue={defaultValue}
+          type={type}
+          id={labelId}
+          className={`text-input ${variant ? `text-input--${variant}` : ""}`}
+          placeholder={placeholder}
+          onChange={handleChange}
+        />
       </label>
-      <input
-        defaultValue={defaultValue}
-        type={type}
-        id={labelId}
-        className={`text-input ${variant ? `text-input--${variant}` : ""}`}
-        placeholder={placeholder}
-        onChange={handleChange}
-      />
     </>
   );
 };

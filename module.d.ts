@@ -4,3 +4,6 @@ declare module "*.svg" {
   const src: string;
   export default src;
 }
+interface Window {
+  cloudinary: any; // Typisierung für die 'cloudinary'-Eigenschaft
+}

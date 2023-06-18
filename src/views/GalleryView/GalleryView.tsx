@@ -1,9 +1,9 @@
 import images from "../../utils/db.json";
 import "./Gallery.scss";
-import useContent from "../../hooks/useContent";
+import { useState } from "react";
 
 export const GalleryView = () => {
-  const [showContent, handleToggleContent] = useContent(images);
+  const [showContent, handleToggleContent] = useState(images);
 
   return (
     <div className="galleryWrapper" id="gallery">

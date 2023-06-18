@@ -1,13 +1,14 @@
 import InstaSvg from "../../asset/instagram.svg";
 import EmailSvg from "../../asset/email-outline.svg";
 import arrowDown from "../../asset/arrow-down.svg";
-import { AddImage } from "../../components/AddImage/AddImage";
 import "./HomePageView.styles.scss";
 import { GalleryView } from "../GalleryView/GalleryView";
 import { useState, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../../utils/firebase";
+import { auth } from "../../utils/auth/firebase";
 import { LogoutButton } from "../../components/Inputs/Button/LogoutButton";
+import ButtonExpander from "../../components/Inputs/Button/ButtonExpander/ButtonExpander";
+import { HomePageViewExpander } from "./contents";
 
 export const HomePageView = () => {
   const [isAuth, setIsAuth] = useState(false);
@@ -27,7 +28,7 @@ export const HomePageView = () => {
         console.log("user is logged out");
       }
     });
-  }, []);
+  }, [isAuth]);
 
   const scrollToSection = (sectionId: string) => {
     const section = document.getElementById(sectionId);
@@ -55,7 +56,7 @@ export const HomePageView = () => {
         </div>
         {isAuth && (
           <>
-            <AddImage />
+            <HomePageViewExpander />
             <LogoutButton />
           </>
         )}
