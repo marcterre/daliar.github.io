@@ -1,3 +1,4 @@
+import CloudinaryImage from "../../components/CloudinaryImage/CloudinaryImage";
 import images from "../../utils/db.json";
 import "./Gallery.scss";
 import { useState } from "react";
@@ -7,6 +8,7 @@ export const GalleryView = () => {
 
   return (
     <div className="galleryWrapper" id="gallery">
+      <CloudinaryImage />
       {images.map((image, index) => (
         <div className="image-wrapper" key={index}>
           {showContent ? (

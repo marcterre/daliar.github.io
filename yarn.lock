@@ -3948,7 +3948,7 @@ cloudinary-react@^1.8.1:
 
 cloudinary@^1.37.1:
   version "1.37.1"
-  resolved "https://registry.npmjs.org/cloudinary/-/cloudinary-1.37.1.tgz"
+  resolved "https://registry.yarnpkg.com/cloudinary/-/cloudinary-1.37.1.tgz#d9805c4b8934e994b9e177355c733fe4f2ff7c01"
   integrity sha512-zik0wsNm+4A3lDrS7SDPskKsKceM8MG+DBK7DWEhoQsHkLm/BdJbNWR6JtJCTGImnANi5Md4t3P+G6DZ+92gVg==
   dependencies:
     cloudinary-core "2.13.0"

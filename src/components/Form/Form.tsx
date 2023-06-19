@@ -1,7 +1,7 @@
 import "./Form.styles.scss";
 import { Input } from "../Inputs/Input";
 import { Button } from "../Inputs/Button";
-import { ReactElement } from "react";
+import { ReactElement, ChangeEvent } from "react";
 
 type FormProps = {
   className?: string;
@@ -13,15 +13,17 @@ type FormProps = {
     placeholder?: string;
     defaultValue?: string;
     type?: string;
-    handleChange?: () => void;
+    handleChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   }[];
+  handleSubmit?: (e: React.FormEvent) => void;
 };
 
 export const Form = (props: FormProps) => {
-  const { className, handleClick, inputLables, buttonChildren } = props;
+  const { className, handleClick, inputLables, buttonChildren, handleSubmit } =
+    props;
 
   return (
-    <form className={className}>
+    <form className={className} onSubmit={handleSubmit}>
       {inputLables?.map((inputLabel, index) => (
         <Input
           key={index}
@@ -35,7 +37,7 @@ export const Form = (props: FormProps) => {
       ))}
       <div className="submit-wrapper">
         <Button handleClick={handleClick} label="cancel" variant="hover" />
-        <Button variant="hover " handleClick={handleClick} label="save" />
+        <Button variant="hover " type="submit" label="save" />
         {buttonChildren}
       </div>
     </form>
