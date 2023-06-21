@@ -1,10 +1,10 @@
 import { FormEvent, useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../utils/firebase";
-import { Button, Input } from "../Inputs";
+import { Button, Input } from "../../components/Inputs";
 import { useNavigate } from "react-router";
 
-export const SingIn = () => {
+export const AuthenticationView = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -51,4 +51,4 @@ export const SingIn = () => {
   );
 };
 
-export default SingIn;
+export default AuthenticationView;
