@@ -64,13 +64,6 @@ export const HomePageView = () => {
           <h2>character designer</h2>
         </div>
         <div className="button-wrapper">
-          <button
-            type="button"
-            className="gallery-link"
-            onClick={() => scrollToSection("gallery")}
-          >
-            <img className="svg" src={arrowDown} alt="go to gallery" />
-          </button>
           <p>go to my gallery</p>
         </div>
       </header>

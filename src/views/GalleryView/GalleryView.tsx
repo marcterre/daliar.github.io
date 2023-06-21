@@ -1,5 +1,4 @@
 import images from "../../utils/db.json";
-import "./Gallery.scss";
 import useContent from "../../hooks/useContent";
 
 export const GalleryView = () => {
@@ -30,3 +29,5 @@ export const GalleryView = () => {
     </div>
   );
 };
+
+export default GalleryView
