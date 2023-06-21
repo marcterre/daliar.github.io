@@ -1,9 +1,8 @@
-import "./AddImage.styles.scss";
 import { Button, Form } from "../..";
 import { useState } from "react";
 import AddCircle from "../../../../asset/add-circle.svg";
 
-export const AddImage = () => {
+export const AddImageButton = () => {
   const addCircle = <img className="button-label" src={AddCircle} alt="add" />;
 
   const [openAddImage, setOpenAddImage] = useState(false);
@@ -24,4 +23,4 @@ export const AddImage = () => {
   );
 };
 
-export default AddImage;
+export default AddImageButton;

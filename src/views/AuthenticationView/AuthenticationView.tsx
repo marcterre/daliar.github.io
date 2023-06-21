@@ -3,6 +3,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../utils/firebase";
 import { Button, Input } from "../../components/Inputs";
 import { useNavigate } from "react-router";
+import "./AuthenticationView.styles.scss";
 
 export const AuthenticationView = () => {
   const navigate = useNavigate();
@@ -26,24 +27,28 @@ export const AuthenticationView = () => {
   return (
     <>
       <main>
-        <form>
-          <div>
-            <Input
-              label="Email"
-              labelId="email-address"
-              type="email"
-              handleChange={(e) => setEmail(e.target.value)}
+        <form className="login-form" onSubmit={(e: FormEvent) => onSingIn(e)}>
+          <Input
+            variant="login-form"
+            label="Email"
+            labelId="email-address"
+            type="email"
+            handleChange={(e) => setEmail(e.target.value)}
+          />
+          <Input
+            variant="login-form"
+            label="password"
+            type="password"
+            handleChange={(e) => setPassword(e.target.value)}
+          />
+          <div className="login-button-wrapper">
+            <Button variant="login-form-submit" type="submit" label="Login" />
+            <Button
+              type="button"
+              variant="login-cancel"
+              label="Cancel and go back"
+              handleClick={() => console.log("go back to home")}
             />
-          </div>
-          <div>
-            <Input
-              label="password"
-              type="password"
-              handleChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <div>
-            <Button handleClick={(e: FormEvent) => onSingIn(e)} label="Login" />
           </div>
         </form>
       </main>
