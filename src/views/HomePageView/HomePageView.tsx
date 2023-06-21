@@ -1,13 +1,12 @@
 import InstaSvg from "../../asset/instagram.svg";
 import EmailSvg from "../../asset/email-outline.svg";
-import arrowDown from "../../asset/arrow-down.svg";
 import { AddImage } from "../../components/Inputs/Button/AddImageButton/AddImage";
 import "./HomePageView.styles.scss";
 import { GalleryView } from "../GalleryView/GalleryView";
 import { useState, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../utils/firebase";
-import { LogoutButton } from "../../components/Inputs/Button/LogoutButton";
+import { LogoutLink } from "../../components/Auth/LogoutButton";
 
 export const HomePageView = () => {
   const [isAuth, setIsAuth] = useState(false);
@@ -56,15 +55,12 @@ export const HomePageView = () => {
         {isAuth && (
           <>
             <AddImage />
-            <LogoutButton />
+            <LogoutLink />
           </>
         )}
         <div className="wrapper">
           <h1>Lia Dingeldein</h1>
           <h2>character designer</h2>
-        </div>
-        <div className="button-wrapper">
-          <p>go to my gallery</p>
         </div>
       </header>
       <GalleryView />

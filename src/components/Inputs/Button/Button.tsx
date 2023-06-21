@@ -12,12 +12,18 @@ type ButtonTypes = {
 export const Button = (props: ButtonTypes) => {
   const { type, label, handleClick, variant } = props;
   return (
-    <button
-      type={type}
-      onClick={handleClick}
-      className={`button ${variant ? `button--${variant}` : ""}`}
+    <div
+      className={`button-wrapper ${
+        variant ? `button-wrapper--${variant}` : ""
+      }`}
     >
-      {label}
-    </button>
+      <button
+        type={type}
+        onClick={handleClick}
+        className={`button ${variant ? `button--${variant}` : ""}`}
+      >
+        {label}
+      </button>
+    </div>
   );
 };

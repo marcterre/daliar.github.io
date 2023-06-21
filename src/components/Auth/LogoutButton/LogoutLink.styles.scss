@@ -1,0 +1,28 @@
+.logout-link {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  background-color: rgba(255, 0, 0, 0.498);
+  border-radius: 12px;
+  color: #000;
+  cursor: pointer;
+  padding: 1rem;
+  text-align: center;
+  transition: 200ms;
+  width: 5rem;
+  height: 2.5rem;
+  box-sizing: border-box;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  &:not(:disabled):hover {
+    outline: 0;
+    color: #000;
+    background: red;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2), 0 3px 8px 0 rgba(0, 0, 0, 0.15);
+  }
+}

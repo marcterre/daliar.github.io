@@ -1,38 +1,31 @@
+.button-wrapper {
+}
 .button {
-  border: 1px solid rgb(108, 107, 107);
-  border-radius: 4px;
-  background-color: rgb(49, 50, 118);
-  color: white;
   cursor: pointer;
   min-width: 60px;
-  padding: 0.3rem;
-  margin: 0.2rem;
+  margin: 0;
+
+  img {
+    width: 1.5rem;
+  }
 
   &--add-image {
-    background: none;
-    border: none;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 50%;
+    border-style: none;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
+      rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
+    box-sizing: border-box;
+    display: inline-flex;
+    justify-content: center;
+    padding: 1rem;
+    position: fixed;
+    bottom: 3rem;
+    left: 3rem;
 
     &:hover {
-      transform: scale(1.2);
-      transition: transform 0.5s ease-in-out;
+      background: #dde7f9;
     }
-  }
-  &--hover:hover {
-    opacity: 0.5;
-  }
-
-  &.rotate-45deg {
-    transform: rotate(45deg);
-  }
-
-  &--logout {
-    position: absolute;
-    top: 6rem;
-    left: 2rem;
-  }
-
-  a {
-    position: absolute;
-    top: 0;
   }
 }

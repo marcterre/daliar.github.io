@@ -1,8 +1,8 @@
 import images from "../../utils/db.json";
-import useContent from "../../hooks/useContent";
+import { useState } from "react";
 
 export const GalleryView = () => {
-  const [showContent, handleToggleContent] = useContent(images);
+  const [showContent, handleToggleContent] = useState(images);
 
   return (
     <div className="galleryWrapper" id="gallery">
@@ -30,4 +30,4 @@ export const GalleryView = () => {
   );
 };
 
-export default GalleryView
+export default GalleryView;
