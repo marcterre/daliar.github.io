@@ -3,7 +3,7 @@ import EmailSvg from "../../asset/email-outline.svg";
 import arrowDown from "../../asset/arrow-down.svg";
 import "./HomePage.scss";
 import { useState } from "react";
-import { AddImage } from "../../components/AddImage/AddImage";
+import { AddImage } from "../../components/Inputs/Button/AddImageButton/AddImage";
 
 export const HomePage = () => {
   const [isAuth, setIsAuth] = useState(false);

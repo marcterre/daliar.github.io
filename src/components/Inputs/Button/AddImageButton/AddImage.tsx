@@ -1,7 +1,7 @@
 import "./AddImage.styles.scss";
-import { Button, Form } from "../Inputs";
+import { Button, Form } from "../..";
 import { useState } from "react";
-import AddCircle from "../../asset/add-circle.svg";
+import AddCircle from "../../../../asset/add-circle.svg";
 
 export const AddImage = () => {
   const addCircle = <img src={AddCircle} alt="add" />;

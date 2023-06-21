@@ -1,7 +1,7 @@
 import InstaSvg from "../../asset/instagram.svg";
 import EmailSvg from "../../asset/email-outline.svg";
 import arrowDown from "../../asset/arrow-down.svg";
-import { AddImage } from "../../components/AddImage/AddImage";
+import { AddImage } from "../../components/Inputs/Button/AddImageButton/AddImage";
 import "./HomePageView.styles.scss";
 import { GalleryView } from "../GalleryView/GalleryView";
 import { useState, useEffect } from "react";

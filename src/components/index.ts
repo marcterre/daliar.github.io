@@ -1,2 +1,2 @@
-export * from "./AddImage";
+export * from "./Inputs/Button/AddImageButton";
 export {};
