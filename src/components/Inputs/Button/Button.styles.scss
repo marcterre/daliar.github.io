@@ -1,6 +1,5 @@
 .button {
   cursor: pointer;
-  min-width: 60px;
   margin: 0;
 
   img {
@@ -21,9 +20,7 @@
     justify-content: center;
     padding: 1rem;
     position: fixed;
-    bottom: 3rem;
-    left: 3rem;
-
+    left: 1rem;
     &:hover {
       background: #dde7f9;
     }
@@ -51,5 +48,22 @@
   }
   &--login-cancel:hover {
     background: rgba(255, 0, 0, 0.507);
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .button {
+    img {
+    }
+
+    &--add-image {
+      position: fixed;
+      bottom: 3rem;
+      left: 3rem;
+    }
+
+    &--login-form-submit,
+    &--login-cancel {
+    }
   }
 }
