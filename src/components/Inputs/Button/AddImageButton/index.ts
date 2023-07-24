@@ -1,1 +1,1 @@
-export * from "./AddImage";
+export * from "./AddImageButton";

@@ -1,14 +1,9 @@
-import "./LogoutButton.styles.scss";
+import "./LogoutLink.styles.scss";
 import { signOut } from "@firebase/auth";
-import { auth } from "../../../../utils/firebase";
+import { auth } from "../../../utils/firebase";
 import { Link } from "react-router-dom";
-import Logout from "../../../../asset/logout.svg";
 
-type LogoutButtonProps = {
-  // props
-};
-
-export const LogoutButton = () => {
+export const LogoutLink = () => {
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
@@ -23,18 +18,12 @@ export const LogoutButton = () => {
   return (
     <Link
       to="/"
-      style={{
-        width: "48px",
-        position: "absolute",
-        top: "6rem",
-        right: "2rem",
-      }}
-      className="link"
+      className="logout-link button--add-image"
       onClick={() => handleLogout()}
     >
-      <img src={Logout} alt="logout" />
+      Logout
     </Link>
   );
 };
 
-export default LogoutButton;
+export default LogoutLink;

@@ -1,5 +1,9 @@
 :root {
-  --background-color: white;
+  --background-color: #fbeee0;
+  --color-dark-brow: #422800;
+  --color-dark-brown-02: rgba(66, 40, 0, 0.2);
+  --color-dark-brown-14: rgba(66, 40, 0, 0.14);
+  --color-dark-brown-12: rgba(66, 40, 0, 0.12);
 }
 
 header,
@@ -11,7 +15,7 @@ body {
   margin: 0;
   scroll-behavior: smooth;
   .svg {
-    height: 48px;
+    height: 30px;
   }
 }
 

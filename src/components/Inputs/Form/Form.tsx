@@ -1,4 +1,3 @@
-import React from "react";
 import "./Form.styles.scss";
 import { Input } from "./Input";
 import { Button } from "../Button";
@@ -8,7 +7,7 @@ type FormProps = { className?: string };
 export const Form = (props: FormProps) => {
   const { className } = props;
   return (
-    <form className={className}>
+    <form className={`dynamic-form ${className}`}>
       <Input label="Name" />
       <Input label="Comment" />
       <Button

@@ -1,7 +1,11 @@
-form {
+.dynamic-form {
+  z-index: 9999;
+  position: fixed;
+  left: 3rem;
+  bottom: 7.5rem;
   display: grid;
   gap: 0.3rem;
-  border: 1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.5);
   border-radius: 4px;
   padding: 1rem;
   background-color: var(--background-color);
@@ -17,7 +21,7 @@ form {
 
 .form-animation {
   transition: transform 0.3s ease-in-out;
-  transform-origin: top;
+  transform-origin: bottom;
   transform: scale(1, 0);
 }
 
