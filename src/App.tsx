@@ -1,10 +1,8 @@
-import "./App.scss";
+import "./App.styles.scss";
 import RoutesContext from "./routes/RoutesContext";
 
 function App() {
-  return (
- <RoutesContext/>
-  );
+  return <RoutesContext />;
 }
 
 export default App;

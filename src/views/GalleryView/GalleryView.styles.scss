@@ -1,0 +1,15 @@
+.gallery-wrapper {
+  display: grid;
+  justify-content: center;
+  gap: 1.5rem;
+  .image-wrapper {
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+    .image-content {
+      width: 90vw;
+      max-height: 95vh;
+      object-fit: contain;
+    }
+  }
+}
