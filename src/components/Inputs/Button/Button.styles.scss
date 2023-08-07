@@ -1,69 +1,76 @@
 .button {
-  cursor: pointer;
-  margin: 0;
+	cursor: pointer;
+	margin: 0;
 
-  img {
-    width: 1.5rem;
-  }
+	img {
+		width: 1.5rem;
+	}
 
-  &--add-image {
-    z-index: 9999;
-    align-items: center;
-    background-color: var(--background-color);
-    border-radius: 50%;
-    border-style: none;
-    box-shadow: var(--color-dark-brown-02) 0 3px 5px -1px,
-      var(--color-dark-brown-14) 0 6px 10px 0,
-      var(--color-dark-brown-12) 0 1px 18px 0;
-    box-sizing: border-box;
-    display: inline-flex;
-    justify-content: center;
-    padding: 1rem;
-    position: fixed;
-    left: 1rem;
-    &:hover {
-      background: #dde7f9;
-    }
-  }
+	&--add-image {
+		z-index: 9999;
+		align-items: center;
+		background-color: var(--background-color);
+		border-radius: 50%;
+		border-style: none;
+		box-shadow: var(--color-dark-brown-02) 0 3px 5px -1px,
+			var(--color-dark-brown-14) 0 6px 10px 0, var(--color-dark-brown-12) 0 1px 18px 0;
+		box-sizing: border-box;
+		display: inline-flex;
+		justify-content: center;
+		padding: 1rem;
+		position: fixed;
+		left: 3rem;
+		bottom: 3rem;
+		&:hover {
+			background: #dde7f9;
+		}
+	}
 
-  &--login-form-submit,
-  &--login-cancel {
-    padding: 0.5rem;
-    margin-top: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    border-radius: 12px;
-    background: none;
-    text-align: center;
-    transition: 200ms;
-    box-sizing: border-box;
-    &:hover {
-      box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2), 0 3px 8px 0 rgba(0, 0, 0, 0.15);
-    }
-  }
-  &--login-form-submit:hover {
-    background: rgba(0, 255, 51, 0.507);
-  }
-  &--login-cancel:hover {
-    background: rgba(255, 0, 0, 0.507);
-  }
+	&--login-form-submit,
+	&--login-cancel {
+		padding: 0.5rem;
+		margin-top: 1rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-decoration: none;
+		border-radius: 12px;
+		background: none;
+		text-align: center;
+		transition: 200ms;
+		box-sizing: border-box;
+		&:hover {
+			box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2), 0 3px 8px 0 rgba(0, 0, 0, 0.15);
+		}
+	}
+	&--login-form-submit:hover {
+		background: rgba(0, 255, 51, 0.507);
+	}
+	&--login-cancel:hover {
+		background: rgba(255, 0, 0, 0.507);
+	}
+
+	&--image-expand {
+		position: relative;
+		bottom: 2rem;
+		background: rgba(0, 0, 0, 0.646);
+		opacity: 0.6;
+		padding: 0.3rem;
+		width: 15vw;
+		color: white;
+		border: none;
+	}
 }
 
-@media only screen and (min-width: 768px) {
-  .button {
-    img {
-    }
-
-    &--add-image {
-      position: fixed;
-      bottom: 3rem;
-      left: 3rem;
-    }
-
-    &--login-form-submit,
-    &--login-cancel {
-    }
-  }
+@media screen and (max-width: 600px) {
+	.button {
+		&--add-image {
+			position: fixed;
+			bottom: 1rem;
+			left: 1rem;
+		}
+		&--image-expand {
+			width: 25vw;
+		}
+	}
 }
