@@ -1,21 +1,21 @@
 .logout-link {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  border-radius: 12px;
-  background: none;
-  color: #000;
-  cursor: pointer;
-  text-align: center;
-  transition: 200ms;
-  height: 2rem;
-  box-sizing: border-box;
-  &:hover {
-    background: rgba(255, 0, 0, 0.695);
-    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2), 0 3px 8px 0 rgba(0, 0, 0, 0.15);
-  }
+	position: absolute;
+	top: 1rem;
+	left: 1rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-decoration: none;
+	border-radius: 12px;
+	background: none;
+	color: #000;
+	cursor: pointer;
+	text-align: center;
+	transition: 200ms;
+	height: 2rem;
+	box-sizing: border-box;
+	&:hover {
+		background: rgba(255, 0, 0, 0.695);
+		box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2), 0 3px 8px 0 rgba(0, 0, 0, 0.15);
+	}
 }
