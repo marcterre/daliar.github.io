@@ -1,57 +1,29 @@
 {
-  "name": "daliar",
+  "name": "daliar.github.io",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "@fortawesome/fontawesome-free": "^6.4.0",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/firebase": "^3.2.1",
-    "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.34",
-    "@types/react": "^18.2.8",
-    "@types/react-dom": "^18.2.4",
-    "cloudinary": "^1.37.1",
-    "firebase": "^9.22.2",
-    "install": "^0.13.0",
-    "node-sass": "^9.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.12.1",
-    "react-scripts": "5.0.1",
-    "sass": "^1.62.1",
-    "sass-loader": "^13.3.1",
-    "typescript": "^4.9.5",
-    "web-vitals": "^2.1.4",
-    "zustand": "^4.3.9"
-  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "dependencies": {
+    "mongodb": "^6.3.0",
+    "mongoose": "^8.1.2",
+    "next": "14.1.0",
+    "react": "^18",
+    "react-dom": "^18"
   },
   "devDependencies": {
-    "scss-loader": "^0.0.1",
-    "typings-for-scss-modules-loader": "^1.5.1"
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10.0.1",
+    "eslint": "^8",
+    "eslint-config-next": "14.1.0",
+    "postcss": "^8",
+    "tailwindcss": "^3.3.0",
+    "typescript": "^5"
   }
 }
