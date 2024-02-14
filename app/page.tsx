@@ -1,5 +1,7 @@
-import CreateProjectFormComponent from "@/components/CreateProjectFormComponent";
-import Image from "next/image";
+"use client";
+import CreateProjectFormComponent from "@/components/layout/CreateProjectFormComponent";
+import HeaderComponent from "@/components/layout/HeaderComponent";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
 export type ProjectType = {
   _id?: string;
@@ -15,50 +17,36 @@ export type UpdateProjectType = {
   foundProject: ProjectType;
 };
 
-const getProjects = async () => {
-  try {
-    const res = await fetch("http://localhost:3000/api/projects", {
-      cache: "no-store",
-    });
+export default function Home() {
+  // const data = await getProjects();
+  const { user } = useUser();
 
-    if (!res.ok) {
-      throw new Error("Failed to fetch topics");
+  const getProjects = async () => {
+    try {
+      const res = await fetch("http://localhost:3000/api/projects", {
+        cache: "no-store",
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to fetch topics");
+      }
+
+      return res.json();
+    } catch (error) {
+      console.log("Error loading topics: ", error);
     }
-
-    return res.json();
-  } catch (error) {
-    console.log("Error loading topics: ", error);
-  }
-};
-
-export default async function Home() {
-  const data = await getProjects();
-
-  if (!data?.projects) {
-    return <p>No projects.</p>;
-  }
-
-  const projects = data.projects;
+  };
 
   return (
     <main>
-      <h1>Projects</h1>
-      {projects &&
-        projects.map((project: ProjectType) => (
-          <div key={project._id}>
-            <h2>{project.title}</h2>
-            <p>{project.description}</p>
-            {project.image && (
-              <Image
-                src={project.image.url}
-                alt={project.title}
-                width={100}
-                height={100}
-              />
-            )}
-          </div>
-        ))}
-      <CreateProjectFormComponent />
+      <div className="h-screen">
+        <HeaderComponent />
+        <div className="grid justify-center content-center gap-4">
+          <h1 className="text-7xl">Lia Dingeldein</h1>
+          <h2 className="text-4xl">Character designer</h2>
+          {user && <CreateProjectFormComponent />}
+        </div>
+      </div>
     </main>
   );
 }
