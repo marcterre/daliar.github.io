@@ -1,17 +1,25 @@
 "use client";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import { FormEvent, useState } from "react";
+import { ProjectType } from "@/app/page";
+import { CldUploadButton } from "next-cloudinary";
 
 const CreateProjectFormComponent = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<ProjectType>({
     title: "",
     description: "",
+    image: {
+      url: "",
+      id: "",
+    },
   });
   const router = useRouter();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
+    e.preventDefault();
+
     const value = e.target.value;
     const name = e.target.name;
 
@@ -21,7 +29,7 @@ const CreateProjectFormComponent = () => {
     });
   };
 
-  const handleSubmit = async (e: { preventDefault: () => void }) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     const res = await fetch("/api/projects", {
@@ -40,13 +48,19 @@ const CreateProjectFormComponent = () => {
   };
 
   return (
-    <div className=" flex justify-center">
-      <form
+    <div className="grid justify-center">
+      <h3>Add an image</h3>
+      <div>
+        <CldUploadButton
+          options={{ multiple: true }}
+          uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_PRESET_NAME}
+        />
+      </div>
+      {/* <form
         onSubmit={handleSubmit}
         method="post"
         className="flex flex-col gap-3 w-1/2"
       >
-        <h3>Create New Ticket</h3>
         <label>Title</label>
         <input
           id="title"
@@ -65,12 +79,13 @@ const CreateProjectFormComponent = () => {
           value={formData.description}
           rows={5}
         />
+        <label>Image</label>
         <input
           type="submit"
           className="pointer btn max-w-xs"
           value="Create Project"
         />
-      </form>
+      </form> */}
     </div>
   );
 };

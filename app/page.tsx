@@ -1,9 +1,14 @@
 import CreateProjectFormComponent from "@/components/CreateProjectFormComponent";
+import Image from "next/image";
 
 export type ProjectType = {
-  _id: string;
+  _id?: string;
   title: string;
   description: string;
+  image: {
+    url: string;
+    id: string;
+  };
 };
 
 export type UpdateProjectType = {
@@ -43,6 +48,14 @@ export default async function Home() {
           <div key={project._id}>
             <h2>{project.title}</h2>
             <p>{project.description}</p>
+            {project.image && (
+              <Image
+                src={project.image.url}
+                alt={project.title}
+                width={100}
+                height={100}
+              />
+            )}
           </div>
         ))}
       <CreateProjectFormComponent />
