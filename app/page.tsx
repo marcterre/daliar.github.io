@@ -1,19 +1,15 @@
-import { createClient } from '@/utils/supabase/server'
-import { cookies } from 'next/headers'
+import Authentication from "../components/Authentication";
+import ProjectList from "../components/ProjectList";
 
-export default async function Home() {
-  const cookieStore = await cookies()
-  const supabase = createClient(cookieStore)
-
-  const { data: projects } = await supabase.from('projects').select('*')
-
+export default function Home() {
   return (
-    <main>
-      <ul>
-        {projects?.map((project) => (
-          <li key={project.id}>{project.title}</li>
-        ))}
-      </ul>
+    <main className="h-screen w-screen">
+      <Authentication />
+      <div className="h-full w-full grid content-center text-center ">
+        <h1>daliar</h1>
+        <h2>Portfolio</h2>
+      </div>
+      <ProjectList />
     </main>
-  )
+  );
 }
