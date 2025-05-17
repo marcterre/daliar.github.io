@@ -40,51 +40,53 @@ const FontDropdown = () => {
 
   return (
     <div className="relative w-[300px] font-sans">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg text-left cursor-pointer flex justify-between items-center hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-      >
-        <span style={{ fontFamily: selectedFont }}>{selectedFont}</span>
-        <svg
-          className={`w-4 h-4 text-gray-500 transition-transform duration-200 ${
-            isOpen ? "rotate-180" : ""
-          }`}
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
+      <div className="hidden group-hover:block">
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="w-full px-4 py-3 group-hover:bg-white border border-gray-200 rounded-lg text-left cursor-pointer flex justify-between items-center hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M19 9l-7 7-7-7"
-          />
-        </svg>
-      </button>
+          <span style={{ fontFamily: selectedFont }}>{selectedFont}</span>
+          <svg
+            className={`w-4 h-4 text-gray-500 transition-transform duration-200 ${
+              isOpen ? "rotate-180" : ""
+            }`}
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </button>
 
-      {isOpen && (
-        <div className="absolute w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg max-h-[400px] overflow-y-auto z-10">
-          <div className="py-2">
-            {fonts.map((font: any) => (
-              <div
-                key={font.family}
-                onClick={() => handleFontChange(font.family)}
-                className={`px-4 py-2 cursor-pointer flex justify-between items-center hover:bg-gray-50 ${
-                  selectedFont === font.family ? "bg-gray-50" : ""
-                }`}
-              >
-                <span className="text-gray-900">{font.family}</span>
-                <span
-                  style={{ fontFamily: font.family }}
-                  className="text-gray-500"
+        {isOpen && (
+          <div className="absolute w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg max-h-[400px] overflow-y-auto z-10">
+            <div className="py-2">
+              {fonts.map((font: any) => (
+                <div
+                  key={font.family}
+                  onClick={() => handleFontChange(font.family)}
+                  className={`px-4 py-2 cursor-pointer flex justify-between items-center hover:bg-gray-50 ${
+                    selectedFont === font.family ? "bg-gray-50" : ""
+                  }`}
                 >
-                  {font.family}
-                </span>
-              </div>
-            ))}
+                  <span className="text-gray-900">{font.family}</span>
+                  <span
+                    style={{ fontFamily: font.family }}
+                    className="text-gray-500"
+                  >
+                    {font.family}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

@@ -20,10 +20,6 @@ type ItemsState = {
   setIsTextBlockOpen: (isOpen: boolean) => void;
   selectedFont: string;
   setSelectedFont: (font: string) => void;
-  itemsMap: Map<string, Item>;
-  addItem: (item: Item) => void;
-  updateItem: (id: string, position: { x: number; y: number }) => void;
-  removeItem: (id: string) => void;
 };
 
 interface ItemsProviderProps {
@@ -37,31 +33,7 @@ export const ItemsProvider: FunctionComponent<ItemsProviderProps> = ({
 }: ItemsProviderProps) => {
   const [isItemModalOpen, setIsItemModalOpen] = useState(false);
   const [isTextBlockOpen, setIsTextBlockOpen] = useState(false);
-  const [selectedFont, setSelectedFont] = useState("");
-  const [itemsMap, setItemsMap] = useState<Map<string, Item>>(new Map());
-
-  const addItem = (item: Item) => {
-    setItemsMap((prev) => new Map(prev).set(item.id, item));
-  };
-
-  const updateItem = (id: string, position: { x: number; y: number }) => {
-    setItemsMap((prev) => {
-      const updatedMap = new Map(prev);
-      const item = updatedMap.get(id);
-      if (item) {
-        updatedMap.set(id, { ...item, position });
-      }
-      return updatedMap;
-    });
-  };
-
-  const removeItem = (id: string) => {
-    setItemsMap((prev) => {
-      const updatedMap = new Map(prev);
-      updatedMap.delete(id);
-      return updatedMap;
-    });
-  };
+  const [selectedFont, setSelectedFont] = useState("Roboto");
 
   return (
     <Items.Provider
@@ -72,10 +44,6 @@ export const ItemsProvider: FunctionComponent<ItemsProviderProps> = ({
         setIsTextBlockOpen,
         selectedFont,
         setSelectedFont,
-        itemsMap,
-        addItem,
-        updateItem,
-        removeItem,
       }}
     >
       {children}

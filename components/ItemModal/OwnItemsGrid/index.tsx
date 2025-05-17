@@ -1,10 +1,12 @@
 import { FunctionComponent } from "react";
 import { useItems } from "@/stores/ItemsProvider";
+
 type OwnItemsGridProps = {
   items: any[];
   isLoading: boolean;
   error: string | null;
 };
+
 const OwnItemsGrid: FunctionComponent<OwnItemsGridProps> = ({
   items,
   isLoading,

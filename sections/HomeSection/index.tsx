@@ -2,10 +2,21 @@
 import ItemModal from "@/components/ItemModal";
 import TextBlock from "@/components/TextBlock";
 import { useAuthentication } from "@/hooks/useAuthentication";
+import { useItemsPositions } from "@/stores/ItemsPositionsProvider";
 import { useItems } from "@/stores/ItemsProvider";
-import { useEffect } from "react";
+import { FunctionComponent, useEffect } from "react";
 
-const HomeSection = () => {
+type HomeSectionProps = {
+  items:
+    | {
+        id: string;
+        element: string;
+        position_x: number;
+        position_y: number;
+      }[];
+};
+
+const HomeSection: FunctionComponent<HomeSectionProps> = ({ items }) => {
   const { user } = useAuthentication();
   const {
     isItemModalOpen,
@@ -13,11 +24,30 @@ const HomeSection = () => {
     isTextBlockOpen,
     setIsTextBlockOpen,
   } = useItems();
+  const {
+    saveNewItemsToDatabase,
+    setItems,
+    newItems,
+    hasChanges,
+    setHasChanges,
+    setIsSaved,
+  } = useItemsPositions();
 
   const toggleModal = () => {
     setIsItemModalOpen(!isItemModalOpen);
     setIsTextBlockOpen(false);
   };
+
+  const handleSave = async () => {
+    await saveNewItemsToDatabase().then(() => {
+      setHasChanges(false);
+      setIsSaved(false);
+    });
+  };
+
+  useEffect(() => {
+    setItems(items);
+  }, [items]);
 
   useEffect(() => {
     if (isItemModalOpen || isTextBlockOpen) {
@@ -51,7 +81,23 @@ const HomeSection = () => {
         </button>
       )}
       {isItemModalOpen && user && <ItemModal toggleModal={toggleModal} />}
-      {isTextBlockOpen && user && !isItemModalOpen && <TextBlock />}
+      {!isItemModalOpen && isTextBlockOpen && <TextBlock />}
+      {hasChanges && (
+        <button
+          onClick={handleSave}
+          className="z-50 absolute bottom-20 right-10"
+        >
+          save
+        </button>
+      )}
+      {items?.map((item, index) => (
+        <div key={index} dangerouslySetInnerHTML={{ __html: item.element }} />
+      ))}
+      {newItems.map((item, index) => {
+        return (
+          <div key={index} dangerouslySetInnerHTML={{ __html: item.element }} />
+        );
+      })}
     </div>
   );
 };
