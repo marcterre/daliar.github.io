@@ -26,8 +26,20 @@ body {
     rgb(var(--background-start-rgb));
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.giphy-suggestion-bar,
+.giphy-grid,
+.scrollbar-hide {
+  scrollbar-width: none;
+}
+
+.giphy-search-bar {
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.giphy-suggestion-bar {
+  padding-bottom: 8px !important;
+}
+
+.giphy-gif {
+  pointer-events: none;
 }
