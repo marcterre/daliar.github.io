@@ -12,21 +12,8 @@ const OwnItemsGrid: FunctionComponent<OwnItemsGridProps> = ({
   isLoading,
   error,
 }) => {
-  const { setIsTextBlockOpen, setIsItemModalOpen } = useItems();
-
-  const handleTextBlock = () => {
-    setIsItemModalOpen(false);
-    setIsTextBlockOpen(true);
-  };
-
   return (
     <div className="grid gap-2 mt-2 overflow-y-auto w-[600px] max-h-[350px] scrollbar-hide">
-      <button
-        onClick={handleTextBlock}
-        className="w-fit hover:bg-slate-200 active:bg-slate-300 p-1"
-      >
-        + add textblock
-      </button>
       <div className="h-[2px] w-full bg-slate-300 mb-2"></div>
       <div
         className="grid gap-2"
