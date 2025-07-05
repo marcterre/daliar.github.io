@@ -6,7 +6,8 @@ import { useAuthentication } from "@/hooks/useAuthentication";
 import { useItemsPositions } from "@/stores/ItemsPositionsProvider";
 import { useItems } from "@/stores/ItemsProvider";
 import { FunctionComponent, useEffect, useState } from "react";
-import { Plus, Save, Edit3, X, Sticker, Type } from "lucide-react";
+import { Plus, Save, Edit3, X, Sticker, Type, Palette } from "lucide-react";
+import { HexColorPicker } from "react-colorful";
 
 type HomeSectionProps = {
   items:
@@ -45,6 +46,12 @@ const HomeSection: FunctionComponent<HomeSectionProps> = ({ items }) => {
   const [savedTextBlocks, setSavedTextBlocks] = useState<any[]>([]);
   const [nonTextBlockItems, setNonTextBlockItems] = useState<any[]>([]);
   const [isEditMenuOpen, setIsEditMenuOpen] = useState(false);
+  const [backgroundColor, setBackgroundColor] = useState("#ffffff");
+  const [isBackgroundColorPickerOpen, setIsBackgroundColorPickerOpen] =
+    useState(false);
+  const [hasUnsavedBackgroundColor, setHasUnsavedBackgroundColor] =
+    useState(false);
+  const [savedBackgroundColor, setSavedBackgroundColor] = useState("#ffffff");
 
   const toggleModal = () => {
     if (!isEditMode) return; // Only allow modal in edit mode
@@ -66,6 +73,13 @@ const HomeSection: FunctionComponent<HomeSectionProps> = ({ items }) => {
         setHasUnsavedTextBlocks(false);
       }
 
+      // Save background color
+      if (hasUnsavedBackgroundColor) {
+        await saveBackgroundColorToDatabase();
+        setSavedBackgroundColor(backgroundColor);
+        setHasUnsavedBackgroundColor(false);
+      }
+
       setHasChanges(false);
       setIsSaved(false);
 
@@ -73,6 +87,7 @@ const HomeSection: FunctionComponent<HomeSectionProps> = ({ items }) => {
       setIsEditMode(false);
       setIsEditMenuOpen(false);
       setSelectedTextBlockId(null);
+      setIsBackgroundColorPickerOpen(false);
     } catch (error) {
       console.error("Error saving:", error);
     }
@@ -109,14 +124,82 @@ const HomeSection: FunctionComponent<HomeSectionProps> = ({ items }) => {
     }
   };
 
+  const handleBackgroundColorChange = (color: string) => {
+    setBackgroundColor(color);
+    setHasUnsavedBackgroundColor(true);
+    // Apply background color immediately with !important to override CSS
+    document.body.style.setProperty("background-color", color, "important");
+  };
+
+  const saveBackgroundColorToDatabase = async () => {
+    try {
+      const response = await fetch("/api/save-background-color", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          colorHex: backgroundColor,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to save background color");
+      }
+
+      const result = await response.json();
+      console.log("Background color saved successfully:", result);
+    } catch (error) {
+      console.error("Error saving background color:", error);
+      throw error;
+    }
+  };
+
+  const loadBackgroundColorFromDatabase = async () => {
+    try {
+      const response = await fetch("/api/get-background-color");
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Loaded background data:", data);
+
+        // The API now returns { backgroundColor: singleObject } instead of array
+        if (data.backgroundColor && data.backgroundColor.colorHex) {
+          const bgColor = data.backgroundColor.colorHex;
+          setBackgroundColor(bgColor);
+          setSavedBackgroundColor(bgColor);
+          // Apply background color with !important to override CSS
+          document.body.style.setProperty(
+            "background-color",
+            bgColor,
+            "important"
+          );
+        }
+      }
+    } catch (error) {
+      console.error("Error loading background color:", error);
+    }
+  };
+
+  const copyToClipboard = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch (error) {
+      console.error("Failed to copy to clipboard:", error);
+    }
+  };
+
   // Filter out text block items from regular items to avoid duplicates
   const filterTextBlockItems = (items: any[]) => {
     return items.filter((item) => {
       const parser = new DOMParser();
       const doc = parser.parseFromString(item.element, "text/html");
       const div = doc.querySelector("div");
+
       // Return false if this is a text block (has div with position absolute and text content)
-      return !(div && div.textContent && div.style.position === "absolute");
+      const isTextBlock =
+        div && div.textContent && div.style.position === "absolute";
+
+      return !isTextBlock;
     });
   };
 
@@ -130,7 +213,21 @@ const HomeSection: FunctionComponent<HomeSectionProps> = ({ items }) => {
       setNonTextBlockItems(filteredItems);
       setItems(filteredItems);
     }
+
+    // Load background color from database
+    loadBackgroundColorFromDatabase();
   }, [items]);
+
+  // Apply background color whenever it changes
+  useEffect(() => {
+    if (backgroundColor) {
+      document.body.style.setProperty(
+        "background-color",
+        backgroundColor,
+        "important"
+      );
+    }
+  }, [backgroundColor]);
 
   // Initialize savedTextBlocks when textBlocks are loaded from database
   useEffect(() => {
@@ -141,26 +238,16 @@ const HomeSection: FunctionComponent<HomeSectionProps> = ({ items }) => {
   }, [textBlocks, savedTextBlocks.length]);
 
   useEffect(() => {
-    if (isItemModalOpen || isEditMode) {
+    if (isEditMode) {
       document.body.classList.add("overflow-hidden");
     } else {
       document.body.classList.remove("overflow-hidden");
     }
 
-    if (isItemModalOpen) {
-      document.body.classList.add("border-2");
-      document.body.classList.add("border-cyan-500");
-    } else {
-      document.body.classList.remove("border-2");
-      document.body.classList.remove("border-cyan-500");
-    }
-
     return () => {
       document.body.classList.remove("overflow-hidden");
-      document.body.classList.remove("border-2");
-      document.body.classList.remove("border-cyan-500");
     };
-  }, [isItemModalOpen, isEditMode]);
+  }, [isEditMode]);
 
   // Check if text blocks have changed
   useEffect(() => {
@@ -169,28 +256,27 @@ const HomeSection: FunctionComponent<HomeSectionProps> = ({ items }) => {
     setHasUnsavedTextBlocks(textBlocksChanged && textBlocks.length > 0);
   }, [textBlocks, savedTextBlocks]);
 
-  // Check if we have unsaved changes from text blocks or regular items
+  // Check if background color has changed
   useEffect(() => {
-    if (newItems.length > 0 || hasUnsavedTextBlocks) {
+    const backgroundColorChanged = backgroundColor !== savedBackgroundColor;
+    setHasUnsavedBackgroundColor(backgroundColorChanged);
+  }, [backgroundColor, savedBackgroundColor]);
+
+  // Check if we have unsaved changes from text blocks, background color, or regular items
+  useEffect(() => {
+    if (
+      newItems.length > 0 ||
+      hasUnsavedTextBlocks ||
+      hasUnsavedBackgroundColor
+    ) {
       setHasChanges(true);
     } else {
       setHasChanges(false);
     }
-  }, [newItems.length, hasUnsavedTextBlocks]);
+  }, [newItems.length, hasUnsavedTextBlocks, hasUnsavedBackgroundColor]);
 
   // Show save button only when there are changes AND user is logged in
   const showSaveButton = hasChanges && user;
-
-  // Debug logging
-  console.log("Debug Save Button:", {
-    hasChanges,
-    hasUnsavedTextBlocks,
-    newItemsLength: newItems.length,
-    user: !!user,
-    showSaveButton,
-    textBlocksLength: textBlocks.length,
-    savedTextBlocksLength: savedTextBlocks.length,
-  });
 
   // Show toolbar when a text block is selected or when adding/editing (and in edit mode)
   const showToolbar =
@@ -204,17 +290,75 @@ const HomeSection: FunctionComponent<HomeSectionProps> = ({ items }) => {
       {isEditMode && (
         <div className="fixed inset-0 border-2 border-blue-500 pointer-events-none z-30"></div>
       )}
-
-      {/* Modal Overlay */}
-      {isItemModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-40"></div>
-      )}
-
       {/* Toolbar - Show when text block is selected or being edited in edit mode */}
       {showToolbar && <Toolbar />}
 
+      {/* Background Color Picker Overlay */}
+      {isBackgroundColorPickerOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 shadow-xl">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-lg font-semibold text-gray-800">
+                Background Color
+              </h3>
+              <button
+                onClick={() => setIsBackgroundColorPickerOpen(false)}
+                className="text-gray-500 hover:text-gray-700 transition-colors"
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            <div className="flex flex-col items-center gap-4">
+              <HexColorPicker
+                color={backgroundColor}
+                onChange={handleBackgroundColorChange}
+              />
+
+              <div className="flex items-center gap-2">
+                <input
+                  type="text"
+                  value={backgroundColor}
+                  onChange={(e) => handleBackgroundColorChange(e.target.value)}
+                  className="px-3 py-2 border border-gray-300 rounded-md text-center font-mono text-sm bg-white text-gray-900"
+                  placeholder="#ffffff"
+                />
+                <button
+                  onClick={() => copyToClipboard(backgroundColor)}
+                  className="px-3 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors text-sm"
+                >
+                  Copy
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Bottom Left Edit Menu */}
       <div className="fixed bottom-4 left-4 flex flex-col items-center gap-2 z-40">
+        {/* Background Color Button - Only show in edit mode */}
+        {isEditMode && (
+          <button
+            type="button"
+            onClick={() =>
+              setIsBackgroundColorPickerOpen(!isBackgroundColorPickerOpen)
+            }
+            className={`text-gray-800 font-bold p-3 rounded-full transition-all duration-300 ease-in-out shadow-lg transform border-2 border-white ${
+              isEditMenuOpen
+                ? "translate-y-0 opacity-100 scale-100"
+                : "translate-y-4 opacity-0 scale-95 pointer-events-none"
+            }`}
+            title="Change Background Color"
+            style={{
+              backgroundColor: backgroundColor,
+              transitionDelay: isEditMenuOpen ? "0.15s" : "0s",
+            }}
+          >
+            <Palette size={24} />
+          </button>
+        )}
+
         {/* Text Block Button - Only show in edit mode */}
         {isEditMode && (
           <button
@@ -305,7 +449,7 @@ const HomeSection: FunctionComponent<HomeSectionProps> = ({ items }) => {
       )}
 
       {/* Modal */}
-      {isItemModalOpen && user && <ItemModal toggleModal={toggleModal} />}
+      {isItemModalOpen && <ItemModal toggleModal={toggleModal} />}
 
       {/* Render existing non-text-block items */}
       {nonTextBlockItems?.map((item, index) => (

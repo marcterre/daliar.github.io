@@ -133,7 +133,7 @@ const TextBlock: React.FC<TextBlockProps> = ({ block }) => {
   };
 
   const handleTextClick = (e: React.MouseEvent) => {
-    // Only allow editing in edit mode
+    e.stopPropagation();
     if (!isEditMode) return;
 
     // Don't allow interaction if any TextBlock is being dragged
@@ -194,8 +194,12 @@ const TextBlock: React.FC<TextBlockProps> = ({ block }) => {
     }
   };
 
-  const handleDelete = async () => {
+  const handleDelete = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+
     // Only allow deletion in edit mode
+    console.log("isEditMode", isEditMode);
     if (!isEditMode) return;
 
     try {
@@ -244,8 +248,8 @@ const TextBlock: React.FC<TextBlockProps> = ({ block }) => {
 
   // Calculate z-index: higher in edit mode, use block's zIndex otherwise
   const getZIndex = () => {
-    if (isDragging) return 50; // Highest when dragging
-    if (isEditMode) return Math.max(block.zIndex, 31); // At least above edit layer (z-30)
+    if (isDragging) return 9999; // Highest when dragging
+    if (isEditMode) return Math.max(block.zIndex, 100); // Much higher in edit mode
     return block.zIndex; // Normal z-index when not in edit mode
   };
 
@@ -318,7 +322,7 @@ const TextBlock: React.FC<TextBlockProps> = ({ block }) => {
             onChange={(e) => setInputText(e.target.value)}
             onBlur={handleInputBlur}
             onKeyDown={handleInputKeyDown}
-            onClick={handleTextClick}
+            onClick={(e) => handleTextClick(e)}
             className="bg-transparent border border-blue-400 rounded outline-none"
             placeholder="Enter text..."
             style={{
@@ -340,7 +344,7 @@ const TextBlock: React.FC<TextBlockProps> = ({ block }) => {
                 ? "bg-blue-50 bg-opacity-20 px-1 rounded"
                 : ""
             }`}
-            onClick={handleTextClick}
+            onClick={(e) => handleTextClick(e)}
             style={{
               maxWidth: maxWidth,
               cursor: isEditMode ? "pointer" : "default",
@@ -353,20 +357,24 @@ const TextBlock: React.FC<TextBlockProps> = ({ block }) => {
           </div>
         )}
 
-        {/* Delete Button - Always positioned at the end of text */}
+        {/* Delete Button - Positioned to the right of text */}
         {showControls && (
-          <div
+          <button
+            onClick={(e) => handleDelete(e)}
             onMouseEnter={() => setIsControlsHovered(true)}
             onMouseLeave={() => setIsControlsHovered(false)}
+            onMouseDown={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
+            }}
+            className="ml-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600 transition-colors shadow-lg flex-shrink-0"
+            style={{
+              zIndex: 9999,
+              pointerEvents: "auto",
+            }}
           >
-            <button
-              onClick={handleDelete}
-              className="ml-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600 transition-colors shadow-lg flex-shrink-0"
-              style={{ marginLeft: "8px" }}
-            >
-              <Trash2 size={14} />
-            </button>
-          </div>
+            <Trash2 size={14} />
+          </button>
         )}
       </div>
 
@@ -376,6 +384,7 @@ const TextBlock: React.FC<TextBlockProps> = ({ block }) => {
           className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white px-2 py-1 rounded cursor-move flex items-center gap-1 shadow-lg"
           onMouseEnter={() => setIsControlsHovered(true)}
           onMouseLeave={() => setIsControlsHovered(false)}
+          style={{ zIndex: 9998 }}
         >
           <Move size={14} />
           <span className="text-xs">Drag</span>

@@ -94,11 +94,11 @@ export const ItemsPositionsProvider: FunctionComponent<
       }
 
       console.log("Items saved successfully");
-      toast.success("Items saved successfully");
+      toast.success("Erfolgreich gespeichert");
       setNewItems([]); // Clear new items after successful save
     } catch (error) {
       console.error("Error saving items to the database:", error);
-      toast.error("Failed to save items");
+      toast.error("Fehler beim Speichern");
     }
   };
 
@@ -143,10 +143,10 @@ export const ItemsPositionsProvider: FunctionComponent<
       }
 
       console.log("Text blocks saved successfully");
-      toast.success("Text blocks saved successfully");
+      toast.success("Erfolgreich gespeichert");
     } catch (error) {
       console.error("Error saving text blocks to the database:", error);
-      toast.error("Failed to save text blocks");
+      toast.error("Fehler beim Speichern");
     }
   };
 
@@ -186,10 +186,10 @@ export const ItemsPositionsProvider: FunctionComponent<
       }
 
       console.log("Text block deleted successfully");
-      toast.success("Text block deleted successfully");
+      toast.success("Erfolgreich gelöscht");
     } catch (error) {
       console.error("Error deleting text block from the database:", error);
-      toast.error("Failed to delete text block");
+      toast.error("Fehler beim Löschen");
       throw error;
     }
   };
