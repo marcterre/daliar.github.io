@@ -33,8 +33,7 @@ const ItemModal: FunctionComponent<ItemModalProps> = ({ toggleModal }) => {
 
   return (
     <>
-      <div className="fixed inset-0 bg-black bg-opacity-50 z-40"></div>
-      <div className="h-[408px] absolute bottom-36 left-28 bg-slate-100 text-black shadow-lg transition-transform transform translate-x-0 border border-gray-300 w-auto  z-50">
+      <div className="h-[408px] absolute bottom-28 left-3 bg-black text-white border-2 border-white shadow-lg transition-transform transform translate-x-0 w-auto  z-50">
         <div className="p-2 relative w-fit">
           <button onClick={toggleModal} className="absolute top-2 right-2">
             X
@@ -42,16 +41,16 @@ const ItemModal: FunctionComponent<ItemModalProps> = ({ toggleModal }) => {
           <div className="flex justify-evenly mb-2">
             <button
               className={`p-1 ${
-                openTab === "giphy" ? "bg-slate-300 underline" : ""
-              } hover:bg-slate-200 active:bg-slate-300`}
+                openTab === "giphy" ? "bg-pink-500 underline" : ""
+              } hover:bg-pink-500 active:bg-pink-500`}
               onClick={() => setOpenTab("giphy")}
             >
               Giphy
             </button>
             <button
               className={`p-1 ${
-                openTab === "own" ? "bg-slate-300 underline" : ""
-              } hover:bg-slate-200 active:bg-slate-300`}
+                openTab === "own" ? "bg-pink-500 underline" : ""
+              } hover:bg-pink-500 active:bg-pink-500`}
               onClick={() => setOpenTab("own")}
             >
               Own Items
