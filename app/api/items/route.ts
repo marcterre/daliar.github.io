@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   const supabase = createClient();
-  const { data: items, error } = await supabase.from("items").select("*");
+  const { data: items, error } = await supabase.from("website").select("*");
 
   if (error) {
     console.error("Error fetching items:", error.message);
